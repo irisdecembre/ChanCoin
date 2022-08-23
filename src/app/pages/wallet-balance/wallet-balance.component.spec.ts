@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BlockViewComponent } from './block-view.component';
+import { WalletBalanceComponent } from './wallet-balance.component';
 
-describe('BlockViewComponent', () => {
-  let component: BlockViewComponent;
-  let fixture: ComponentFixture<BlockViewComponent>;
+describe('WalletBalanceComponent', () => {
+  let component: WalletBalanceComponent;
+  let fixture: ComponentFixture<WalletBalanceComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BlockViewComponent ]
+      declarations: [ WalletBalanceComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(BlockViewComponent);
+    fixture = TestBed.createComponent(WalletBalanceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

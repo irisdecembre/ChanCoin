@@ -1,27 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { BlockchainService } from './services/blockchain.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-  public blockchain;
-  public showInfoMessage = true;
-
-  constructor(private blockchainService: BlockchainService) {
-    this.blockchain = blockchainService.blockchainInstance;
-  }
-
-  ngOnInit() {
-  }
-
-  thereArePendingTransactions() {
-    return this.blockchain.pendingTransactions.length > 0;
-  }
-
-  dismissInfoMessage() {
-    this.showInfoMessage = false;
-  }
+export class AppComponent {
+  title = 'MyCoin';
 }

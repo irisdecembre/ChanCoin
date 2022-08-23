@@ -1,17 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { BlockchainService } from '../../services/blockchain.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { BlockchainService } from 'src/app/services/blockchain.service';
 
 @Component({
   selector: 'app-transactions-table',
   templateUrl: './transactions-table.component.html',
-  styleUrls: ['./transactions-table.component.scss']
+  styleUrls: ['./transactions-table.component.css']
 })
 export class TransactionsTableComponent implements OnInit {
-  @Input()
-  public transactions = [];
+  @Input() public transactions
 
   constructor(public blockchainService: BlockchainService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
+
 }

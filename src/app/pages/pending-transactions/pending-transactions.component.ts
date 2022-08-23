@@ -1,35 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { BlockchainService } from '../../services/blockchain.service';
+import { BlockchainService } from 'src/app/services/blockchain.service';
 
 @Component({
   selector: 'app-pending-transactions',
   templateUrl: './pending-transactions.component.html',
-  styleUrls: ['./pending-transactions.component.scss']
+  styleUrls: ['./pending-transactions.component.css']
 })
 export class PendingTransactionsComponent implements OnInit {
-  public pendingTransactions = [];
-  public miningInProgress = false;
-  public justAddedTx = false;
+  public pendingTransactions = [] as any;
 
   constructor(private blockchainService: BlockchainService, private router: Router, private route: ActivatedRoute) {
     this.pendingTransactions = blockchainService.getPendingTransactions();
   }
 
-  ngOnInit() {
-    if (this.route.snapshot.paramMap.get('addedTx')) {
-      this.justAddedTx = true;
-
-      setTimeout(() => {
-        this.justAddedTx = false;
-      }, 4000);
-    }
+  ngOnInit(): void {
   }
 
   minePendingTransactions() {
-    this.miningInProgress = true;
     this.blockchainService.minePendingTransactions();
-    this.miningInProgress = false;
     this.router.navigate(['/']);
   }
 }

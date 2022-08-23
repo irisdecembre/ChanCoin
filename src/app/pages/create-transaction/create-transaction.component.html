@@ -6,7 +6,7 @@
 
 	<div class="form-group">
 	    <label for="fromAddress">From address</label>
-	    <input type="text" class="form-control" id="fromAddress" aria-describedby="fromAddressHelp" [(ngModel)]="ownWalletKey.publicKey" disabled>
+	    <input type="text" class="form-control" id="fromAddress" aria-describedby="fromAddressHelp" [(ngModel)]="walletKey.publicKey" disabled>
 	    <small id="fromAddressHelp" class="form-text text-muted">
 	    	This is your wallet address. You cannot change it because you can only spend your own coins.
 	    </small>
@@ -22,12 +22,15 @@
 
   	<div class="form-group">
 	    <label for="amount">Amount</label>
-	    <input type="number" class="form-control" id="amount" aria-describedby="amountHelp" [(ngModel)]="newTx.amount">
+	    <input type="number" class="form-control" id="amount" aria-describedby="amountHelp" [(ngModel)]="newTx.amount" (ngModelChange)="getBalanceOfAddress()">
 	    <small id="amountHelp" class="form-text text-muted">
-	    	You can transfer any amount. Account balance is not checked in this demo. Have at it!
+	    	<span *ngIf="this.newTx.amount > this.balance">You don't have enough coin to transfer!</span>
+			<span *ngIf="this.newTx.amount === 0">Amount of coin to transfer must be larger than 0!</span>
+			<span *ngIf="this.newTx.amount == null">Please insert the amount of coin to transfer!</span>
 	    </small>
   	</div>
-
-  	<button (click)="createTransaction()" type="submit" class="btn btn-primary">Sign & create transaction</button>
+  	<button (click)="createTransaction()" type="submit" class="btn btn-primary" *ngIf="this.newTx.amount <= this.balance && this.newTx.amount != 0 && this.newTx.amount != null">
+		Sign & create transaction
+	</button>
 
 </div>
